@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import CarRow from "./CarRow";
 
 const carsArray = [
@@ -77,36 +77,16 @@ const carsArray = [
 function CarList() {
   const [cars, setCars] = useState([]);
   const [carType, setCarType] = useState("");
+  // const db = SQLite.openDatabase("vanier.db");
 
   useEffect(() => {
     setCars(carsArray);
   }, []);
 
-  const SearchCars = () => {
-    if (carType == "") {
-     alert("Mising parameters to do the search.");
-    }else{
-      const carsToSet = [...cars].filter((cars) => cars.type === carType);
-      setCars(carsToSet);
-    }
-
-    
-  };
-
   return (
     <>
       <div className="row mb-2">
         <h3 className="themeFontColor text-center">Our available cars</h3>
-      </div>
-      <div>
-        <button
-          type="submit"
-          className="btn"
-          style={{ margin: 20, backgroundColor: "#264653", color: "white" }}
-          onClick={SearchCars}
-        >
-          Search 2
-        </button>
       </div>
       <table className="table table-hover">
         <thead>
